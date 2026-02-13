@@ -16,16 +16,48 @@
 }
 
 body{
-    background:#111;
+    background:#0a0a0a;
     color:white;
     scroll-behavior:smooth;
 }
 
-/* ================= HERO ================= */
+/* Background Glow */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle at center, rgba(255,0,0,0.08), transparent 70%);
+    pointer-events:none;
+}
 
+/* Navigation */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:12px 0;
+    text-align:center;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(8px);
+    z-index:1000;
+}
+
+nav a{
+    color:#ff2e2e;
+    text-decoration:none;
+    margin:0 12px;
+    font-size:13px;
+    letter-spacing:2px;
+}
+
+nav a:hover{
+    text-shadow:0 0 10px red;
+}
+
+/* HERO */
 .hero{
     height:100vh;
-    background:radial-gradient(circle at center, #2b0008 0%, #000 70%);
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -36,14 +68,14 @@ body{
 .darbaar-logo{
     font-family:'Times New Roman', serif;
     font-size:80px;
-    letter-spacing:8px;
+    letter-spacing:6px;
     color:#ff2e2e;
+    white-space:nowrap;
     text-shadow:
         0 0 5px #ff0000,
         0 0 15px #ff0000,
         0 0 30px #ff0000,
         0 0 60px #ff0000;
-    animation:glow 2s infinite alternate;
 }
 
 .letter{
@@ -51,28 +83,22 @@ body{
     display:inline-block;
 }
 
-/* 🔥 Crowns moved closer */
 .crown{
     position:absolute;
-    top:-12px;   /* closer to A */
+    top:-10px;
     left:50%;
     transform:translateX(-50%);
-    font-size:18px;
+    font-size:16px;
     color:#ff2e2e;
-    text-shadow:
-        0 0 5px #ff0000,
-        0 0 10px #ff0000;
+    text-shadow:0 0 10px red;
 }
 
 .sub-logo{
     margin-top:20px;
     padding:6px 25px;
     border:2px solid #ff2e2e;
-    color:#ff2e2e;
-    font-size:18px;
+    font-size:16px;
     letter-spacing:4px;
-    display:inline-block;
-    text-shadow:0 0 10px #ff0000;
 }
 
 .btn{
@@ -90,54 +116,47 @@ body{
     color:#8b0000;
 }
 
-@keyframes glow{
-    from{
-        text-shadow:
-        0 0 5px #ff0000,
-        0 0 15px #ff0000,
-        0 0 30px #ff0000;
-    }
-    to{
-        text-shadow:
-        0 0 10px #ff0000,
-        0 0 25px #ff0000,
-        0 0 50px #ff0000,
-        0 0 80px #ff0000;
-    }
-}
-
-/* ================= MENU ================= */
-
+/* Sections */
 .section{
-    padding:70px 10%;
-    background:#800020;
-}
-
-.section:nth-child(even){
-    background:#6d0019;
+    padding:100px 10%;
 }
 
 .section h2{
     text-align:center;
-    margin-bottom:40px;
-    letter-spacing:4px;
+    margin-bottom:50px;
     font-size:26px;
+    letter-spacing:4px;
+    position:relative;
+}
+
+.section h2::after{
+    content:"";
+    width:60px;
+    height:2px;
+    background:red;
+    display:block;
+    margin:10px auto;
+    box-shadow:0 0 10px red;
 }
 
 .menu-list{
-    max-width:900px;
+    max-width:800px;
     margin:auto;
 }
 
 .menu-item{
     display:flex;
     justify-content:space-between;
-    padding:10px 0;
-    border-bottom:1px solid rgba(255,255,255,0.2);
+    padding:15px 20px;
+    margin-bottom:15px;
+    border-radius:10px;
+    background:rgba(255,0,0,0.05);
+    transition:0.3s;
 }
 
-.menu-item span:last-child{
-    font-weight:600;
+.menu-item:hover{
+    background:rgba(255,0,0,0.15);
+    transform:scale(1.02);
 }
 
 footer{
@@ -146,37 +165,46 @@ footer{
     background:black;
     font-size:14px;
     color:#aaa;
+    margin-top:50px;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .darbaar-logo{
+        font-size:40px;
+        letter-spacing:3px;
+    }
+    .crown{
+        font-size:12px;
+        top:-6px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HERO ================= -->
+<nav>
+<a href="#starters">STARTERS</a>
+<a href="#wraps">WRAPS</a>
+<a href="#burgers">BURGERS</a>
+<a href="#rice">RICE</a>
+<a href="#chinese">CHINESE</a>
+<a href="#dessert">DESSERT</a>
+</nav>
 
 <section class="hero">
-
-    <h1 class="darbaar-logo">
-        D A R B
-        <span class="letter">
-            A
-            <span class="crown">♔</span>
-        </span>
-        <span class="letter">
-            A
-            <span class="crown">♕</span>
-        </span>
-        R
-    </h1>
-
-    <div class="sub-logo">THE AIR LOUNGE</div>
-
-    <a href="#starters" class="btn">View Menu</a>
-
+<h1 class="darbaar-logo">
+D A R B
+<span class="letter">A<span class="crown">♔</span></span>
+<span class="letter">A<span class="crown">♕</span></span>
+R
+</h1>
+<div class="sub-logo">THE AIR LOUNGE</div>
+<a href="#starters" class="btn">View Menu</a>
 </section>
 
-<!-- ================= FULL MENU ================= -->
-
+<!-- STARTERS -->
 <section class="section" id="starters">
 <h2>STARTERS</h2>
 <div class="menu-list">
@@ -188,7 +216,8 @@ footer{
 </div>
 </section>
 
-<section class="section">
+<!-- WRAPS -->
+<section class="section" id="wraps">
 <h2>WRAPS</h2>
 <div class="menu-list">
 <div class="menu-item"><span>Chicken Wrap</span><span>₹129</span></div>
@@ -198,7 +227,8 @@ footer{
 </div>
 </section>
 
-<section class="section">
+<!-- BURGERS -->
+<section class="section" id="burgers">
 <h2>BURGERS</h2>
 <div class="menu-list">
 <div class="menu-item"><span>Chicken Classic</span><span>₹149</span></div>
@@ -208,7 +238,8 @@ footer{
 </div>
 </section>
 
-<section class="section">
+<!-- RICE -->
+<section class="section" id="rice">
 <h2>RICE BOWLS</h2>
 <div class="menu-list">
 <div class="menu-item"><span>Korean Chicken</span><span>₹199</span></div>
@@ -218,7 +249,8 @@ footer{
 </div>
 </section>
 
-<section class="section">
+<!-- CHINESE -->
+<section class="section" id="chinese">
 <h2>CHINESE</h2>
 <div class="menu-list">
 <div class="menu-item"><span>Soft Fried Rice</span><span>₹199</span></div>
@@ -228,80 +260,8 @@ footer{
 </div>
 </section>
 
-<section class="section">
-<h2>SANDWICH</h2>
-<div class="menu-list">
-<div class="menu-item"><span>Regular</span><span>₹149</span></div>
-<div class="menu-item"><span>Grilled</span><span>₹149</span></div>
-<div class="menu-item"><span>Cheese Burst</span><span>₹149</span></div>
-<div class="menu-item"><span>Spice Blast</span><span>₹149</span></div>
-</div>
-</section>
-
-<section class="section">
-<h2>FRIES</h2>
-<div class="menu-list">
-<div class="menu-item"><span>Salted</span><span>₹99</span></div>
-<div class="menu-item"><span>Peri Peri</span><span>₹129</span></div>
-<div class="menu-item"><span>Cheesy Fries</span><span>₹169</span></div>
-<div class="menu-item"><span>Chicken Cheese Cocktail</span><span>₹199</span></div>
-</div>
-</section>
-
-<section class="section">
-<h2>CHICKEN DELIGHTS</h2>
-<div class="menu-list">
-<div class="menu-item"><span>Korean Chicken</span><span>₹169</span></div>
-<div class="menu-item"><span>Chicken 65</span><span>₹169</span></div>
-<div class="menu-item"><span>Chicken Manchuria</span><span>₹169</span></div>
-<div class="menu-item"><span>Chicken Lollipop</span><span>₹169</span></div>
-<div class="menu-item"><span>Chicken Hotwings</span><span>₹169</span></div>
-<div class="menu-item"><span>Chicken Majestic</span><span>₹169</span></div>
-<div class="menu-item"><span>Chicken Kebab Bluff</span><span>₹169</span></div>
-</div>
-</section>
-
-<section class="section">
-<h2>PASTA</h2>
-<div class="menu-list">
-<div class="menu-item"><span>White Sauce</span><span>₹169</span></div>
-<div class="menu-item"><span>Red Sauce</span><span>₹169</span></div>
-<div class="menu-item"><span>Indie Spice</span><span>₹169</span></div>
-</div>
-</section>
-
-<section class="section">
-<h2>COFFEE</h2>
-<div class="menu-list">
-<div class="menu-item"><span>Regular</span><span>₹99</span></div>
-<div class="menu-item"><span>Americano</span><span>₹99</span></div>
-<div class="menu-item"><span>Hazel Blend</span><span>₹99</span></div>
-<div class="menu-item"><span>Irish Blend</span><span>₹99</span></div>
-<div class="menu-item"><span>Vanilla Blend</span><span>₹99</span></div>
-</div>
-</section>
-
-<section class="section">
-<h2>DARBAAR CHAI</h2>
-<div class="menu-list">
-<div class="menu-item"><span>Masala Chai</span><span>₹49/99</span></div>
-<div class="menu-item"><span>Ginger Chai</span><span>₹49/99</span></div>
-<div class="menu-item"><span>Zafrani Chai</span><span>₹49/99</span></div>
-<div class="menu-item"><span>Sulemani Decoction</span><span>₹49/99</span></div>
-</div>
-</section>
-
-<section class="section">
-<h2>COOLERS</h2>
-<div class="menu-list">
-<div class="menu-item"><span>Virgin Mojito</span><span>₹99</span></div>
-<div class="menu-item"><span>Blue Lagoon</span><span>₹99</span></div>
-<div class="menu-item"><span>Strawberry</span><span>₹99</span></div>
-<div class="menu-item"><span>Cranberry</span><span>₹99</span></div>
-</div>
-</section>
-
-<section class="section">
+<!-- DESSERT -->
+<section class="section" id="dessert">
 <h2>DESSERT HEAVEN</h2>
 <div class="menu-list">
 <div class="menu-item"><span>Cookies</span><span>₹99</span></div>
